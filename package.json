@@ -1,0 +1,18 @@
+{
+  "name": "mocha-bdd-decorators",
+  "version": "0.1.0",
+  "description": "An experiment to allow writing Mocha unit tests with es2015 classes and es2016 decorators",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require babel-hook",
+    "compile": "./node_modules/.bin/babel -d lib/ src/",
+    "prepublish": "npm run compile"
+  },
+  "author": "Andrew Levine",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^5.8.29",
+    "chai": "^3.4.0",
+    "mocha": "^2.3.3"
+  }
+}
