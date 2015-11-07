@@ -1,29 +1,50 @@
-import decorators from './bdd-decorators';
-import getAllProps from './get-all-props';
+import isFunc from './is-function';
+import {decorators, annotations as annotes} from './bdd-decorators';
+import getInheritedProps from './get-inherited-props';
 
-export { decorators };
+export {
+    runTest,
+    decorators as bdd
+};
 
-export function runTest(suite) {
-    let props = getAllProps(Object.getPrototypeOf(suite));
-    let methods = props.map(prop => suite[prop]).filter(val => val);
-    let tests = [];
-    let beforeHooks = [];
-    let beforeEachHooks = [];
-    let afterHooks = [];
-    let suiteName;
+function runTest(suite) {
+    let proto = Object.getPrototypeOf(suite);
+    let suiteName = proto.constructor.suiteName;
+    let annotations = getAnnotatedValues(proto);
 
-    methods.forEach(method => {
-        if (method.suiteName) suiteName = method.suiteName;
-        if (method.testName) tests.push(method);
-        if (method.beforeFunc) beforeHooks.push(method);
-        if (method.beforeEachFunc) beforeEachHooks.push(method);
-        if (method.afterFunc) afterHooks.push(method);
-    });
+    let {beforeFunc, beforeEachFunc, afterFunc, testName} = annotations;
 
     describe(suiteName, () => {
-        beforeHooks.forEach(beforeHook => before(beforeHook));
-        beforeEachHooks.forEach(beforeEachHook => beforeEach(beforeEachHook));
-        afterHooks.forEach(afterHook => after(afterHook));
-        tests.forEach(test => it(test.testName, test));
+        beforeFunc.forEach(beforeHook => before(beforeHook));
+        beforeEachFunc.forEach(beforeEachHook => beforeEach(beforeEachHook));
+        afterFunc.forEach(afterHook => after(afterHook));
+        testName.forEach(test => it(test.testName, test));
     });
+}
+
+function getAnnotatedValues(suite) {
+    let props = getInheritedProps(suite);
+    let suiteData = getEmptyAnnotations();
+
+    props.forEach(prop => {
+        let method = suite[prop];
+        if (!isFunc(method)) return;
+
+        let methodProps = Object.keys(method);
+        methodProps.forEach(prop => {
+            let hasAnnote = annotations.includes(prop);
+            if (hasAnnote) suiteData[prop].push(method);
+        });
+    });
+
+    return suiteData;
+}
+
+const annotations = Object.keys(annotes).map(key => annotes[key]);
+
+function getEmptyAnnotations() {
+    return annotations.reduce((collection, annotationType) => {
+        collection[annotationType] = [];
+        return collection;
+    }, {});
 }

@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {decorators as bdd, runTest} from '../lib';
+import {bdd, runTest} from '../lib';
 
 class BaseTest {
     @bdd.before
@@ -17,8 +17,8 @@ class MyUnitTest extends BaseTest {
     @bdd.after
     myAfterHook() { }
 
-    @bdd.it('should pass when running this test')
-    oneOfMyTestCases() {
+    @bdd.it('should pass')
+    sampleTestCase() {
         expect(true).to.be.true;
     }
 }
