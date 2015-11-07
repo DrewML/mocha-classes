@@ -19,11 +19,12 @@ class MyUnitTest {
 runTest(new MyUnitTest());
 ```
 
-## Benefits
+## Is this really a good idea?
+
+Honestly, that's a great question. As of this time, I haven't identified much value that this decorator/class based test syntax provides. Only time will tell...
+
+
+## Possible Benefits
 
 - Less nesting, due to description of test not being a param to `describe`.
-- Encourages more descriptive function names for `before` and `after` hooks (real world Mocha tests frequently use anon functions to avoid line length limits in projects), which leads to more descriptive stack traces.
-
-## Is this a good idea?
-
-Honestly, that's a great question. As of this time, I haven't identified much value that this decorator/class based test syntax provides. Having said that, my hope is that this at least kicks off some deeper thinking about how we can use newer JavaScript syntax to simplify writing tests.
+- Encourages more descriptive function names for life-cycle hooks like `before` and `after`  (real world Mocha tests frequently use anon functions to avoid line length limits in projects), which leads to more descriptive stack traces.
