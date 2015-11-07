@@ -2,6 +2,8 @@
 
 A simple proof of concept to explore using [ES2015 Classes](http://www.2ality.com/2015/02/es6-classes-final.html) and [ES2016 Decorators](https://github.com/wycats/javascript-decorators) to help write more declarative unit tests with [Mocha](https://mochajs.org/). Loosely insprired by the [NUnit](http://www.nunit.org/index.php?p=home) syntax.
 
+**Warning:** [Decorators are currently broken (as of 10/29/15) in Babel 6](https://github.com/babel/babel/issues/2645). Until that's addressed, you'll need to use Babel 5 if you plan to use decorators in your project.
+
 ## Features
 - Write tests using ES2015 Classes
 - Supports inherited life-cycle hooks (`before`, `beforeEach`, etc) from subclasses
