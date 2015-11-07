@@ -1,5 +1,5 @@
 {
-  "name": "mocha-bdd-decorators",
+  "name": "mocha-classes",
   "version": "0.1.0",
   "description": "An experiment to allow writing Mocha unit tests with es2015 classes and es2016 decorators",
   "main": "index.js",

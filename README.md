@@ -1,6 +1,23 @@
-# Mocha Decorators
+# Mocha Classes
 
-A simple proof of concept to explore using [ES2016 Decorators](https://github.com/wycats/javascript-decorators) to help write more declarative unit tests with [Mocha](https://mochajs.org/). Loosely insprired by the [NUnit](http://www.nunit.org/index.php?p=home) syntax.
+A simple proof of concept to explore using [ES2015 Classes](http://www.2ality.com/2015/02/es6-classes-final.html) and [ES2016 Decorators](https://github.com/wycats/javascript-decorators) to help write more declarative unit tests with [Mocha](https://mochajs.org/). Loosely insprired by the [NUnit](http://www.nunit.org/index.php?p=home) syntax.
+
+## Example Test
+
+```javascript
+import {expect} from 'chai';
+import {bdd, runTest} from 'mocha-classes';
+
+@bdd.describe('ES2015 Classes and ES2016 Decorators with Mocha')
+class MyUnitTest {
+    @bdd.it('should pass')
+    sampleTestCase() {
+        expect(true).to.be.true;
+    }
+}
+
+runTest(new MyUnitTest());
+```
 
 ## Benefits
 
