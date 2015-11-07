@@ -2,11 +2,10 @@ import {expect} from 'chai';
 import {decorators as bdd, runTest} from '../lib';
 
 class BaseTest {
-    // @bdd.before
+    @bdd.before
     myInheritedBeforeHook() { }
 }
 
-// Example Test
 @bdd.describe('ES2016 Decorators with Mocha')
 class MyUnitTest extends BaseTest {
     @bdd.before
