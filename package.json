@@ -1,6 +1,6 @@
 {
   "name": "mocha-classes",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "An experiment to allow writing Mocha unit tests with es2015 classes and es2016 decorators",
   "main": "lib/index.js",
   "scripts": {

@@ -4,6 +4,12 @@ A simple proof of concept to explore using [ES2015 Classes](http://www.2ality.co
 
 **Warning:** [Decorators are currently broken (as of 10/29/15) in Babel 6](https://github.com/babel/babel/issues/2645). Until that's addressed, you'll need to use Babel 5 if you plan to use decorators in your project.
 
+## Install
+
+```bash
+npm install --save-dev mocha-classes
+```
+
 ## Features
 - Write tests using ES2015 Classes
 - Supports inherited life-cycle hooks (`before`, `beforeEach`, etc) from subclasses
