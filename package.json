@@ -1,8 +1,8 @@
 {
   "name": "mocha-classes",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An experiment to allow writing Mocha unit tests with es2015 classes and es2016 decorators",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "mocha --require babel-hook",
     "compile": "rm -rf lib && mkdir -p lib && ./node_modules/.bin/babel -d lib/ src/",
