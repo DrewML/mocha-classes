@@ -12,13 +12,14 @@ function runTest(suite) {
     let suiteName = proto.constructor.suiteName;
     let annotations = getAnnotatedValues(proto);
 
-    let {beforeFunc, beforeEachFunc, afterFunc, testName} = annotations;
+    let {beforeFunc, beforeEachFunc, afterFunc, testName, skippedName} = annotations;
 
     describe(suiteName, () => {
-        beforeFunc.forEach(beforeHook => before(beforeHook));
-        beforeEachFunc.forEach(beforeEachHook => beforeEach(beforeEachHook));
-        afterFunc.forEach(afterHook => after(afterHook));
-        testName.forEach(test => it(test.testName, test));
+        beforeFunc.forEach(beforeHook => before(beforeHook.bind(suite)));
+        beforeEachFunc.forEach(beforeEachHook => beforeEach(beforeEachHook.bind(suite)));
+        afterFunc.forEach(afterHook => after(afterHook.bind(suite)));
+        testName.forEach(test => it(test.testName, test.bind(suite)));
+        skippedName.forEach(skipped => it.skip(skipped.skippedName, skipped.bind(suite)))
     });
 }
 
@@ -33,7 +34,7 @@ function getAnnotatedValues(suite) {
         let methodProps = Object.keys(method);
         methodProps.forEach(prop => {
             let hasAnnote = annotations.includes(prop);
-            if (hasAnnote) suiteData[prop].push(method.bind(suite));
+            if (hasAnnote) suiteData[prop].push(method);
         });
     });
 
