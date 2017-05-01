@@ -33,7 +33,7 @@ function getAnnotatedValues(suite) {
         let methodProps = Object.keys(method);
         methodProps.forEach(prop => {
             let hasAnnote = annotations.includes(prop);
-            if (hasAnnote) suiteData[prop].push(method);
+            if (hasAnnote) suiteData[prop].push(method.bind(suite));
         });
     });
 
