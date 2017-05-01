@@ -8,6 +8,7 @@ let annotes = {
     beforeEach: 'beforeEachFunc',
     after: 'afterFunc',
     it: 'testName',
+    skipped: 'skippedName',
     describe: 'suiteName'
 };
 export {annotes as annotations}
@@ -22,4 +23,8 @@ export let decorators = {
             suite[annotes.describe] = suiteName;
         };
     }
+};
+
+decorators.it.skip = function (testName) {
+    return setAnnotation.bind(null, annotes.skipped, testName);
 };
